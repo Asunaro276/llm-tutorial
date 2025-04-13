@@ -29,7 +29,6 @@ def main():
     messages.append(response)
     if response.tool_calls:
         for tool_call in response.tool_calls:
-            print(tool_call)
             value = light_control.invoke(tool_call["args"])
             messages.append(ToolMessage(content=value, tool_call_id=tool_call["id"]))
     response = llm_with_tool.invoke(messages)
